@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "author": "Nhom 3",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "wokwi-gas-sensor",
+      "id": "mq2",
+      "top": -80.8,
+      "left": 223.7,
+      "rotate": 90,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht",
+      "top": -105.3,
+      "left": 148.2,
+      "attrs": { "temperature": "8.4", "humidity": "23.5" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "ledFan",
+      "top": 265.2,
+      "left": -101.8,
+      "attrs": { "color": "blue", "label": "Quat" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "ledPump",
+      "top": 265.2,
+      "left": -44.2,
+      "attrs": { "color": "green", "label": "May bom" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 148.8,
+      "left": -106.15,
+      "rotate": 90,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 150,
+      "left": -45,
+      "rotate": 90,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz",
+      "top": -84,
+      "left": -132.6,
+      "attrs": { "volume": "0.5" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "mq2:VCC", "esp:3V3", "red", [ "h-8.7", "v139.3" ] ],
+    [ "mq2:GND", "esp:GND.1", "black", [ "h0.8", "v129.8" ] ],
+    [ "mq2:AOUT", "esp:D34", "orange", [ "v33.9" ] ],
+    [ "dht:VCC", "esp:3V3", "red", [ "h-1.8", "v178.3", "h-61.9" ] ],
+    [ "dht:GND", "esp:GND.1", "black", [ "h-1.8", "v164.1" ] ],
+    [ "dht:SDA", "esp:D15", "green", [ "h-1.7", "v154.6" ] ],
+    [ "esp:D26", "r1:1", "blue", [] ],
+    [ "r1:2", "ledFan:A", "blue", [ "v58.4" ] ],
+    [ "ledFan:C", "esp:GND.1", "black", [ "h-0.6", "v46", "h240", "v-139" ] ],
+    [ "esp:D27", "r2:1", "green", [] ],
+    [ "r2:2", "ledPump:A", "green", [ "h6.05", "v55.2" ] ],
+    [ "ledPump:C", "esp:GND.1", "black", [ "v9.6", "h130.6", "v-100.6" ] ],
+    [ "esp:D25", "bz:2", "red", [] ],
+    [ "bz:1", "esp:GND.1", "black", [ "v220.8", "h307.2", "v-158.2" ] ]
+  ],
+  "dependencies": {}
+}
